@@ -1,0 +1,17 @@
+import {put, takeEvery, all} from 'redux-saga/effects';
+
+function* helloSaga() {
+  console.log('Hello Sagas!');
+}
+
+function* incrementAsync() {
+  yield put({type: 'INCREMENT'});
+}
+
+function* watchIncrementAsync() {
+  yield takeEvery('INCREMENT_ASYNC', incrementAsync);
+}
+
+export default function* rootSaga() {
+  yield all([helloSaga(), watchIncrementAsync()]);
+}
